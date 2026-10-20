@@ -18,6 +18,10 @@
   border-bottom-color: #e1ad01;
 }
 
+.nav__item_hidden {
+  display: none;
+}
+
 .nav__link {
   text-decoration: none;
   color: inherit;

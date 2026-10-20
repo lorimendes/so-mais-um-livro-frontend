@@ -1,12 +1,16 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import menuButton from "../../../images/burger-menu.svg";
 import closeButton from "../../../images/close-button.svg";
+import CurrentUserContext from "../../../contexts/CurrentUserContext";
 
 function Navigation({
   onMenuButtonClick,
   isMobileNavigation,
   isMobileMenuOpened,
 }) {
+  const { isLoggedIn } = useContext(CurrentUserContext);
+
   return (
     <nav className="nav">
       <ul
@@ -17,13 +21,16 @@ function Navigation({
             Início
           </Link>
         </li>
-        <li className="nav__item">
+        <li className={`${isLoggedIn ? "nav__item" : "nav__item_hidden"}`}>
           <Link className="nav__link" to="/minha-lista">
             Minha lista
           </Link>
         </li>
-        <li className="nav__item">
+        <li className={`${isLoggedIn ? "nav__item" : "nav__item_hidden"}`}>
           <button className="nav__button">Sair</button>
+        </li>
+        <li className={`${isLoggedIn ? "nav__item_hidden" : "nav__item"}`}>
+          <button className="nav__button">Entrar</button>
         </li>
       </ul>
       <button
