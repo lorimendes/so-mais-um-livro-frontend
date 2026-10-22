@@ -2,6 +2,9 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
 }
 
 @media screen and (max-width: 760px) {
@@ -12,6 +15,6 @@
 
 @media screen and (max-width: 680px) {
   .main {
-    padding: 40px 30px;
+    padding: 40px 0px;
   }
 }

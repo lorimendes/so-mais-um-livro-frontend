@@ -81,6 +81,9 @@
 }
 
 @media screen and (max-width: 680px) {
+  .search-form {
+    padding: 0 30px;
+  }
   .search-form__title {
     font-size: 30px;
   }
