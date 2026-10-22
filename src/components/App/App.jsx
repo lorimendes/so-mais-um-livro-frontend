@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import Footer from "../Footer/Footer";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function App() {
@@ -10,7 +11,8 @@ function App() {
     <CurrentUserContext.Provider value={{ isLoggedIn }}>
       <div className="page">
         <Header />
-        <Main></Main>
+        <Main />
+        <Footer />
       </div>
     </CurrentUserContext.Provider>
   );
