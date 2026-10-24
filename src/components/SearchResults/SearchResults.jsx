@@ -1,6 +1,6 @@
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Prelouder from "../Preloader/Preloader";
-import NoResults from "../NoResults/NoResults";
+import SearchFeedback from "../SearchFeedback/SearchFeedback";
 import BookCard from "../BookCard/BookCard";
 import { useContext } from "react";
 
@@ -96,6 +96,11 @@ function SearchResults() {
     },
   ];
 
+  const noResultMessage = {
+    title: "Não achamos resultados para essa busca.",
+    text: "Verifique a ortografia e tente novamente.",
+  };
+
   return (
     <>
       {isLoading && <Prelouder />}
@@ -107,7 +112,7 @@ function SearchResults() {
           })}
         </ul>
       )}
-      {!isLoading && !books && <NoResults />}
+      {!isLoading && !books && <SearchFeedback message={noResultMessage} />}
     </>
   );
 }

@@ -9,7 +9,7 @@ import { getBooksBySearch } from "../../utils/api";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState(null);
   const [totalBooks, setTotalBooks] = useState(0);
 
   async function handleSubmitSearch(searchText, startIndex) {

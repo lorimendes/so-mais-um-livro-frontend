@@ -1,4 +1,4 @@
-.no-results {
+.search-feedback {
   margin: 0 auto;
   text-align: center;
   display: flex;
@@ -6,12 +6,17 @@
   gap: 10px;
 }
 
-.no-results__icon {
+.search-feedback__icon {
   height: 50px;
+  margin-bottom: 10px;
+}
+
+.search-feedback__text {
+  font-weight: 300;
 }
 
 @media screen and (max-width: 680px) {
-  .no-results {
+  .search-feedback {
     padding: 30px;
   }
 }
