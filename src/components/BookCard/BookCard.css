@@ -67,8 +67,9 @@
 }
 
 .book-card__line {
-  width: 20%;
-  border: 1px solid #2b2d421c;
+  width: 90%;
+  border-top: 1px solid #2b2d421c;
+  align-self: center;
   display: none;
 }
 
@@ -90,13 +91,16 @@
 
   .book-card__content {
     border-left: none;
-    border-top: 2px solid #2b2d421c;
     padding: 30px;
   }
 
   .book-card__cover {
     border-radius: 15px;
     margin: 15px 15px;
+  }
+
+  .book-card__line {
+    display: block;
   }
 
   .book-card__description {

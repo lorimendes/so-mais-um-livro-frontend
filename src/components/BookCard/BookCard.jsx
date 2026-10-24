@@ -1,13 +1,16 @@
 function BookCard({ book }) {
   return (
     <>
-      {book ? (
+      {book && (
         <div className="book-card">
-          <img
-            src={book.volumeInfo?.imageLinks?.thumbnail}
-            alt={`Capa do livro: ${book.volumeInfo?.title}`}
-            className="book-card__cover"
-          />
+          {book.volumeInfo?.imageLinks?.thumbnail && (
+            <img
+              src={book.volumeInfo?.imageLinks?.thumbnail}
+              alt={`Capa do livro: ${book.volumeInfo?.title}`}
+              className="book-card__cover"
+            />
+          )}
+          <div className="book-card__line"></div>
           <div className="book-card__content">
             <div className="book-card__header">
               <h3 className="book-card__title">{book.volumeInfo.title}</h3>
@@ -17,7 +20,6 @@ function BookCard({ book }) {
                 })}
               </ul>
             </div>
-            <div className="book-card__line"></div>
             <p className="book-card__description">
               {book.volumeInfo?.description}
             </p>
@@ -28,8 +30,6 @@ function BookCard({ book }) {
             </ul>
           </div>
         </div>
-      ) : (
-        <div></div>
       )}
     </>
   );
