@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import menuButton from "../../../images/burger-menu.svg";
-import closeButton from "../../../images/close-button.svg";
-import CurrentUserContext from "../../../contexts/CurrentUserContext";
+import menuButton from "../../../../images/burger-menu.svg";
+import closeButton from "../../../../images/close-button.svg";
+import CurrentUserContext from "../../../../contexts/CurrentUserContext";
 
 function Navigation({
   onMenuButtonClick,

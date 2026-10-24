@@ -1,4 +1,4 @@
-import devPhoto from "../../../images/about-photo.png";
+import devPhoto from "../../images/about-photo.png";
 
 function About() {
   return (

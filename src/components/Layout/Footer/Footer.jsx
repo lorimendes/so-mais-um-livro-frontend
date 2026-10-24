@@ -1,5 +1,5 @@
-import githubLogo from "../../images/github-svgrepo-com.svg";
-import linkedinLogo from "../../images/linkedin-svgrepo-com.svg";
+import githubLogo from "../../../images/github-svgrepo-com.svg";
+import linkedinLogo from "../../../images/linkedin-svgrepo-com.svg";
 import { Link } from "react-router-dom";
 
 function Footer() {

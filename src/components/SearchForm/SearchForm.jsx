@@ -1,5 +1,5 @@
 import { useState } from "react";
-import searchIcon from "../../../images/search-button.svg";
+import searchIcon from "../../images/search-button.svg";
 
 function SearchForm() {
   const [searchText, setSearchText] = useState();
