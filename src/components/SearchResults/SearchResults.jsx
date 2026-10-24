@@ -1,10 +1,11 @@
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import Prelouder from "../Preloader/Preloader";
 import NoResults from "../NoResults/NoResults";
 import BookCard from "../BookCard/BookCard";
 import { useContext } from "react";
 
 function SearchResults() {
-  const { books } = useContext(CurrentUserContext);
+  const { isLoading, books } = useContext(CurrentUserContext);
   // Dados de teste
   const testBooks = [
     {
@@ -97,15 +98,16 @@ function SearchResults() {
 
   return (
     <>
-      {books.length === 0 ? (
-        <NoResults />
-      ) : (
+      {isLoading && <Prelouder />}
+
+      {!isLoading && books?.length > 0 && (
         <ul className="search-results">
           {books.map((book) => {
             return <BookCard book={book} />;
           })}
         </ul>
       )}
+      {!isLoading && !books && <NoResults />}
     </>
   );
 }

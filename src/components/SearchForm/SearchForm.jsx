@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import searchIcon from "../../images/search-button.svg";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function SearchForm() {
   const [searchText, setSearchText] = useState();
+  const { handleSubmitSearch } = useContext(CurrentUserContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(searchText);
+    handleSubmitSearch(searchText, 0);
   };
 
   return (
