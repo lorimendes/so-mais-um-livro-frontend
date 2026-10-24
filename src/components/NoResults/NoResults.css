@@ -1,0 +1,17 @@
+.no-results {
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.no-results__icon {
+  height: 50px;
+}
+
+@media screen and (max-width: 680px) {
+  .no-results {
+    padding: 30px;
+  }
+}

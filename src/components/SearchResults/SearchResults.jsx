@@ -1,8 +1,16 @@
-function SearchResults() {
+import NoResults from "../NoResults/NoResults";
+
+function SearchResults({ books }) {
   return (
-    <ul className="search-results">
-      <li>{/* Componentes Book aqui */}</li>
-    </ul>
+    <>
+      {!books ? (
+        <NoResults />
+      ) : (
+        <ul className="search-results">
+          <li>{/* Componentes Book aqui */}</li>
+        </ul>
+      )}
+    </>
   );
 }
 
