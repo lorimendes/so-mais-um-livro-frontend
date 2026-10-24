@@ -1,0 +1,11 @@
+.search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media screen and (max-width: 760px) {
+  .search-results {
+    padding: 0 30px;
+  }
+}
