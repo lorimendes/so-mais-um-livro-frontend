@@ -7,9 +7,10 @@ import BookSearch from "../../pages/BookSearch";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [books, setBooks] = useState([]);
 
   return (
-    <CurrentUserContext.Provider value={{ isLoggedIn }}>
+    <CurrentUserContext.Provider value={{ isLoggedIn, books }}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
