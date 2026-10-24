@@ -4,7 +4,7 @@ function BookCard({ book }) {
       {book ? (
         <div className="book-card">
           <img
-            src={book.volumeInfo?.imageLinks?.small}
+            src={book.volumeInfo?.imageLinks?.thumbnail}
             alt={`Capa do livro: ${book.volumeInfo?.title}`}
             className="book-card__cover"
           />

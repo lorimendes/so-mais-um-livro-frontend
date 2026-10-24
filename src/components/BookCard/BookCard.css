@@ -12,15 +12,14 @@
 .book-card__cover {
   border-radius: 15px;
   margin: 10px 15px;
-  height: 300px;
+  height: 200px;
 }
 
 .book-card__content {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 30px 40px;
-  border-left: 2px solid #fa3532;
+  padding: 30px 40px 30px 20px;
 }
 
 .book-card__header {
@@ -91,7 +90,7 @@
 
   .book-card__content {
     border-left: none;
-    border-top: 2px solid #fa3532;
+    border-top: 2px solid #2b2d421c;
     padding: 30px;
   }
 
