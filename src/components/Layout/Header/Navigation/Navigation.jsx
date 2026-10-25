@@ -22,11 +22,6 @@ function Navigation({
           </Link>
         </li>
         <li className={`${isLoggedIn ? "nav__item" : "nav__item_hidden"}`}>
-          <Link className="nav__link" to="/minha-lista">
-            Minha lista
-          </Link>
-        </li>
-        <li className={`${isLoggedIn ? "nav__item" : "nav__item_hidden"}`}>
           <button className="nav__button">Sair</button>
         </li>
         <li className={`${isLoggedIn ? "nav__item_hidden" : "nav__item"}`}>

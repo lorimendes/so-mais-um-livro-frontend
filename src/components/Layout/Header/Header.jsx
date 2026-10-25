@@ -12,7 +12,7 @@ function Header() {
   return (
     <header className="header">
       <div className="header__container">
-        <Link>
+        <Link to="/">
           <img
             src={logo}
             alt="Logo só mais um livro"
