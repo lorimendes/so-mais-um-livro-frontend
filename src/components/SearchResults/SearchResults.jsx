@@ -5,7 +5,7 @@ import BookCard from "../BookCard/BookCard";
 import { useContext } from "react";
 
 function SearchResults() {
-  const { isLoading, books } = useContext(CurrentUserContext);
+  const { isLoading, books, errorMessage } = useContext(CurrentUserContext);
   // Dados de teste
   const testBooks = [
     {
@@ -96,11 +96,6 @@ function SearchResults() {
     },
   ];
 
-  const noResultMessage = {
-    title: "Não achamos resultados para essa busca.",
-    text: "Verifique a ortografia e tente novamente.",
-  };
-
   return (
     <>
       {isLoading && <Prelouder />}
@@ -112,7 +107,8 @@ function SearchResults() {
           })}
         </ul>
       )}
-      {!isLoading && !books && <SearchFeedback message={noResultMessage} />}
+
+      {!isLoading && errorMessage && <SearchFeedback message={errorMessage} />}
     </>
   );
 }

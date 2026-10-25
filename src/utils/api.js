@@ -17,13 +17,18 @@ const getBooksBySearch = async (searchText, startIndex) => {
 
   const query = new URLSearchParams(params).toString();
 
-  try {
-    const res = await fetch(`${baseUrl}?${query}`);
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.log(error);
+  const res = await fetch(`${baseUrl}?${query}`);
+
+  if (!res.ok) {
+    console.log(res);
+    const error = new Error("Falha ao pesquisar livros na API");
+    error.status = res.status;
+    throw error;
   }
+
+  const data = await res.json();
+
+  return data;
 };
 
 export { getBooksBySearch };
