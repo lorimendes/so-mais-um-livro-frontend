@@ -3,8 +3,8 @@ import searchIcon from "../../images/search-button.svg";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function SearchForm() {
-  const [searchText, setSearchText] = useState();
-  const { handleSubmitSearch } = useContext(CurrentUserContext);
+  const { searchText, setSearchText, handleSubmitSearch } =
+    useContext(CurrentUserContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,6 +30,7 @@ function SearchForm() {
           placeholder="Busque por título ou autor..."
           minLength="2"
           maxLength="100"
+          value={searchText}
           onChange={(event) => setSearchText(event.target.value)}
           required
         />

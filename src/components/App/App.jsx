@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Layout from "../Layout/Layout";
 import Home from "../../pages/Home";
@@ -9,9 +9,12 @@ import { getBooksBySearch } from "../../utils/api";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchText, setSearchText] = useState("");
   const [books, setBooks] = useState(null);
   const [totalBooks, setTotalBooks] = useState(0);
   const [errorMessage, setErrorMessage] = useState(null);
+
+  const navigate = useNavigate();
 
   const noResultMessage = {
     title: "Nenhum livro encontrado.",
@@ -27,6 +30,7 @@ function App() {
     setErrorMessage(null);
     setIsLoading(true);
     setBooks(null);
+    navigate("/book-search");
 
     try {
       const data = await getBooksBySearch(searchText, startIndex);
@@ -55,6 +59,8 @@ function App() {
       value={{
         isLoading,
         isLoggedIn,
+        searchText,
+        setSearchText,
         books,
         totalBooks,
         errorMessage,
