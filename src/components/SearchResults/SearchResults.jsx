@@ -5,7 +5,16 @@ import BookCard from "../BookCard/BookCard";
 import { useContext } from "react";
 
 function SearchResults() {
-  const { isLoading, books, errorMessage } = useContext(CurrentUserContext);
+  const {
+    isLoading,
+    isLoadingMore,
+    searchIndex,
+    books,
+    totalBooks,
+    errorMessage,
+    handleLoadMore,
+  } = useContext(CurrentUserContext);
+
   // Dados de teste
   const testBooks = [
     {
@@ -96,19 +105,37 @@ function SearchResults() {
     },
   ];
 
+  function handleClickLoadMore(event) {
+    event.preventDefault();
+    handleLoadMore();
+  }
+
   return (
     <>
-      {isLoading && <Prelouder />}
+      <div className="search-results">
+        {!isLoading && books?.length > 0 && (
+          <>
+            <ul className="search-results__list">
+              {books.map((book) => {
+                return <BookCard book={book} />;
+              })}
+            </ul>
+            <button
+              className={`search-results__button ${searchIndex < totalBooks && !isLoadingMore ? "search-results__button_active" : "search-results__button_inactive"}`}
+              onClick={handleClickLoadMore}
+            >
+              Carregar mais
+            </button>
+            {isLoadingMore && <Prelouder />}
+          </>
+        )}
 
-      {!isLoading && books?.length > 0 && (
-        <ul className="search-results">
-          {books.map((book) => {
-            return <BookCard book={book} />;
-          })}
-        </ul>
-      )}
+        {isLoading && <Prelouder />}
 
-      {!isLoading && errorMessage && <SearchFeedback message={errorMessage} />}
+        {!isLoading && errorMessage && (
+          <SearchFeedback message={errorMessage} />
+        )}
+      </div>
     </>
   );
 }

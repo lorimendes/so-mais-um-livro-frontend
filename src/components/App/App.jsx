@@ -9,7 +9,9 @@ import { getBooksBySearch } from "../../utils/api";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [searchIndex, setSearchIndex] = useState(0);
   const [books, setBooks] = useState(null);
   const [totalBooks, setTotalBooks] = useState(0);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -26,14 +28,20 @@ function App() {
     text: "Tente novamente em alguns instantes.",
   };
 
-  async function handleSubmitSearch(searchText, startIndex) {
+  function resetSearchData() {
     setErrorMessage(null);
-    setIsLoading(true);
+    setSearchIndex(0);
     setBooks(null);
+    setTotalBooks(0);
+  }
+
+  async function handleSubmitSearch(searchText) {
+    resetSearchData();
+    setIsLoading(true);
     navigate("/book-search");
 
     try {
-      const data = await getBooksBySearch(searchText, startIndex);
+      const data = await getBooksBySearch(searchText, searchIndex);
       if (!data) {
         console.log("erro ao receber dados da api");
         return;
@@ -45,6 +53,7 @@ function App() {
 
       setTotalBooks(data.totalItems);
       setBooks(data.items);
+      setSearchIndex((prevIndex) => prevIndex + 3);
     } catch (error) {
       if (error.status >= 500 && error.status < 600) {
         setErrorMessage(serverErrorMessage);
@@ -54,17 +63,48 @@ function App() {
     }
   }
 
+  async function handleLoadMore() {
+    setErrorMessage(null);
+    setIsLoadingMore(true);
+    try {
+      const data = await getBooksBySearch(searchText, searchIndex);
+      if (!data) {
+        console.log("erro ao receber dados da api");
+        return;
+      }
+
+      if (data.totalItems === 0) {
+        setErrorMessage(noResultMessage);
+      }
+
+      setBooks((prevBooks) => {
+        return [...prevBooks, ...data.items];
+      });
+
+      setSearchIndex((prevIndex) => prevIndex + 3);
+    } catch (error) {
+      if (error.status >= 500 && error.status < 600) {
+        setErrorMessage(serverErrorMessage);
+      }
+    } finally {
+      setIsLoadingMore(false);
+    }
+  }
+
   return (
     <CurrentUserContext.Provider
       value={{
         isLoading,
+        isLoadingMore,
         isLoggedIn,
         searchText,
         setSearchText,
+        searchIndex,
         books,
         totalBooks,
         errorMessage,
         handleSubmitSearch,
+        handleLoadMore,
       }}
     >
       <Routes>

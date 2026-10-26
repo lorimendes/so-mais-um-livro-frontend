@@ -8,7 +8,7 @@ function SearchForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleSubmitSearch(searchText, 0);
+    handleSubmitSearch(searchText);
   };
 
   return (
