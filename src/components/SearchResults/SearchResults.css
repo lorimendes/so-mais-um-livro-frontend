@@ -20,6 +20,10 @@
   cursor: pointer;
 }
 
+.search-results__button:hover {
+  opacity: 80%;
+}
+
 .search-results__button_active {
   display: block;
 }

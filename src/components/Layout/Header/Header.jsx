@@ -3,7 +3,7 @@ import Navigation from "./Navigation/Navigation";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header({ onOpenPopup }) {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
 
   const handleMenuButton = () => {
@@ -22,6 +22,7 @@ function Header() {
         <Navigation
           onMenuButtonClick={handleMenuButton}
           isMobileMenuOpened={isMobileMenuOpened}
+          onOpenPopup={onOpenPopup}
         />
       </div>
       <div className="header__line"></div>

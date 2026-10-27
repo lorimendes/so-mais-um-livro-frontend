@@ -8,6 +8,7 @@ function Navigation({
   onMenuButtonClick,
   isMobileNavigation,
   isMobileMenuOpened,
+  onOpenPopup,
 }) {
   const { isLoggedIn } = useContext(CurrentUserContext);
 
@@ -25,7 +26,17 @@ function Navigation({
           <button className="nav__button">Sair</button>
         </li>
         <li className={`${isLoggedIn ? "nav__item_hidden" : "nav__item"}`}>
-          <button className="nav__button">Entrar</button>
+          <button
+            className="nav__button"
+            onClick={() => onOpenPopup("Cadastro")}
+          >
+            Cadastrar
+          </button>
+        </li>
+        <li className={`${isLoggedIn ? "nav__item_hidden" : "nav__item"}`}>
+          <button className="nav__button" onClick={() => onOpenPopup("Login")}>
+            Entrar
+          </button>
         </li>
       </ul>
       <button

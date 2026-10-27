@@ -15,6 +15,7 @@ function App() {
   const [books, setBooks] = useState(null);
   const [totalBooks, setTotalBooks] = useState(0);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [titlePopup, setTitlePopup] = useState(null);
 
   const navigate = useNavigate();
 
@@ -107,7 +108,16 @@ function App() {
       }}
     >
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route
+          path="/"
+          element={
+            <Layout
+              titlePopup={titlePopup}
+              onOpenPopup={setTitlePopup}
+              onClosePopup={() => setTitlePopup(null)}
+            />
+          }
+        >
           <Route index element={<Home />} />
           <Route path="/book-search" element={<BookSearch />} />
           <Route path="*" element={<Navigate to="/" replace />} />
