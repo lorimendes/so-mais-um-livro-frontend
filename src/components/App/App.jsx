@@ -39,7 +39,7 @@ function App() {
 
     try {
       const data = await getBooksBySearch(searchText, 0);
-      if (!data) {
+      if (!data || !data.items) {
         setErrorMessage(serverErrorMessage);
         return;
       }
@@ -66,7 +66,7 @@ function App() {
     setIsLoadingMore(true);
     try {
       const data = await getBooksBySearch(searchText, searchIndex);
-      if (!data) {
+      if (!data || !data.items) {
         setErrorMessage(serverErrorMessage);
         return;
       }
