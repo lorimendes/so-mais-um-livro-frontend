@@ -3,7 +3,7 @@ const apiKey = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY;
 
 const getBooksBySearch = async (searchText, startIndex) => {
   const params = {
-    q: searchText,
+    q: "intitle:" + searchText,
     printType: "books",
     maxResults: 3,
     startIndex: startIndex,

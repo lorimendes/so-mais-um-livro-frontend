@@ -27,7 +27,7 @@ function SearchForm() {
           type="text"
           name="search-text"
           className="search-form__input"
-          placeholder="Busque por título ou autor..."
+          placeholder="Busque por título..."
           minLength="2"
           maxLength="100"
           value={searchText}
