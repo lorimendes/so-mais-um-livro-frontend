@@ -28,27 +28,24 @@ function App() {
     text: "Tente novamente em alguns instantes.",
   };
 
-  function resetSearchData() {
+  async function handleSubmitSearch(searchText) {
     setErrorMessage(null);
     setSearchIndex(0);
     setBooks(null);
     setTotalBooks(0);
-  }
-
-  async function handleSubmitSearch(searchText) {
-    resetSearchData();
     setIsLoading(true);
     navigate("/book-search");
 
     try {
-      const data = await getBooksBySearch(searchText, searchIndex);
+      const data = await getBooksBySearch(searchText, 0);
       if (!data) {
-        console.log("erro ao receber dados da api");
+        setErrorMessage(serverErrorMessage);
         return;
       }
 
       if (data.totalItems === 0) {
         setErrorMessage(noResultMessage);
+        return;
       }
 
       setTotalBooks(data.totalItems);
@@ -69,14 +66,16 @@ function App() {
     try {
       const data = await getBooksBySearch(searchText, searchIndex);
       if (!data) {
-        console.log("erro ao receber dados da api");
+        setErrorMessage(serverErrorMessage);
         return;
       }
 
       if (data.totalItems === 0) {
         setErrorMessage(noResultMessage);
+        return;
       }
 
+      setTotalBooks(data.totalItems);
       setBooks((prevBooks) => {
         return [...prevBooks, ...data.items];
       });
