@@ -68,6 +68,11 @@
   opacity: 80%;
 }
 
+.modal-with-form__button:disabled {
+  opacity: 80%;
+  cursor: auto;
+}
+
 .modal-with-form__close-button {
   position: fixed;
   top: 15px;
@@ -79,4 +84,12 @@
 
 .modal-with-form__close-icon {
   height: 40px;
+}
+
+.modal-with-form__error-container {
+  color: #b10300;
+  padding: 2px;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 15px;
 }
