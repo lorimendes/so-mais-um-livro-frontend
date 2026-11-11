@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Layout from "../Layout/Layout";
@@ -24,6 +30,7 @@ function App() {
   const [errorAuth, setErrorAuth] = useState(null);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const noResultMessage = {
     title: "Nenhum livro encontrado.",
@@ -187,6 +194,12 @@ function App() {
     setIsLoggedIn(true);
     checkUserLogged();
   }, []);
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setSearchText("");
+    }
+  }, [location.pathname]);
 
   return (
     <CurrentUserContext.Provider
