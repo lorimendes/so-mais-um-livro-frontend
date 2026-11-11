@@ -36,6 +36,10 @@ function App() {
   };
 
   async function handleSubmitSearch(searchText) {
+    if (!isLoggedIn) {
+      setTitlePopup("Login");
+      return;
+    }
     setErrorMessage(null);
     setSearchIndex(0);
     setBooks(null);
