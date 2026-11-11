@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && scp -r ./dist/* lorinsantanna@136.112.51.99:/home/lorinsantanna/so-mais-um-livro-frontend"
   },
   "dependencies": {
     "dom": "^0.0.3",

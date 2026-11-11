@@ -10,19 +10,22 @@ function Navigation({
   isMobileMenuOpened,
   onOpenPopup,
 }) {
-  const { isLoggedIn } = useContext(CurrentUserContext);
+  const { isLoggedIn, handleLogout } = useContext(CurrentUserContext);
 
   return (
     <nav className="nav">
       <ul
         className={`${isMobileNavigation ? "nav__container_ismobile" : "nav__container"} ${isMobileNavigation && isMobileMenuOpened ? "nav__container_mobile-menu_opened" : ""}`}
       >
-        <li className="nav__item">
+        <li className={`${isLoggedIn ? "nav__item" : "nav__item_hidden"}`}>
           <Link className="nav__link" to="/">
             Início
           </Link>
         </li>
-        <li className={`${isLoggedIn ? "nav__item" : "nav__item_hidden"}`}>
+        <li
+          className={`${isLoggedIn ? "nav__item" : "nav__item_hidden"}`}
+          onClick={handleLogout}
+        >
           <button className="nav__button">Sair</button>
         </li>
         <li className={`${isLoggedIn ? "nav__item_hidden" : "nav__item"}`}>

@@ -29,6 +29,7 @@ function Header({ onOpenPopup }) {
       <Navigation
         isMobileNavigation={true}
         isMobileMenuOpened={isMobileMenuOpened}
+        onOpenPopup={onOpenPopup}
       />
       <div
         className={`${isMobileMenuOpened ? "header__line header__line_ismobile" : ""}`}
