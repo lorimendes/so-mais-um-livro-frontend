@@ -145,6 +145,8 @@ function App() {
     } catch (error) {
       if (error.status === 401) {
         setErrorAuth("Email e/ou senha incorretos");
+      } else if (error.status === 400) {
+        setErrorAuth("Dados incompletos ou inválidos");
       } else {
         setErrorAuth("Ocorreu um erro no servidor");
       }

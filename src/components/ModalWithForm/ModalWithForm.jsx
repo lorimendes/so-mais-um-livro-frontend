@@ -1,28 +1,19 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import closeIcon from "../../images/close-icon.svg";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import useFormValidation from "../../hooks/useFormValidation";
 
 function ModalWithForm({ title, onClose }) {
   const { handleLogin, handleRegister, isLoadingAuth, errorAuth } =
     useContext(CurrentUserContext);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  const { values, handleChange, errors, isValid, cleanForm } =
+    useFormValidation();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { name, email, password } = formData;
+
+    const { name, email, password } = values;
     if (title === "Login") {
       handleLogin(email, password);
     } else {
@@ -37,11 +28,12 @@ function ModalWithForm({ title, onClose }) {
   };
 
   useEffect(() => {
+    cleanForm();
     if (!title) return;
 
     document.addEventListener("keydown", handleEscClose);
     return () => document.removeEventListener("keydown", handleEscClose);
-  }, [title]);
+  }, [title, cleanForm]);
 
   const handleOutClick = (event) => {
     if (event.target === event.currentTarget) {
@@ -67,10 +59,12 @@ function ModalWithForm({ title, onClose }) {
                 placeholder="Nome"
                 minLength={2}
                 required
-                value={formData.name}
+                value={values.name || ""}
                 onChange={handleChange}
               />
-              <span className="modal-with-form__input-error"></span>
+              <span className="modal-with-form__input-error">
+                {errors.name}
+              </span>
             </>
           )}
           <input
@@ -79,12 +73,12 @@ function ModalWithForm({ title, onClose }) {
             type="email"
             name="email"
             placeholder="E-mail"
-            value={formData.email}
+            value={values.email || ""}
             autoComplete="username"
             onChange={handleChange}
             required
           />
-          <span className="modal-with-form__input-error"></span>
+          <span className="modal-with-form__input-error">{errors.email}</span>
           <input
             id="password-input"
             className="modal-with-form__input"
@@ -92,11 +86,14 @@ function ModalWithForm({ title, onClose }) {
             name="password"
             placeholder="Senha"
             minLength={8}
-            value={formData.password}
+            value={values.password || ""}
             autoComplete="current-password"
             onChange={handleChange}
             required
           />
+          <span className="modal-with-form__input-error">
+            {errors.password}
+          </span>
 
           {errorAuth && (
             <div className="modal-with-form__error-container">
@@ -104,9 +101,12 @@ function ModalWithForm({ title, onClose }) {
             </div>
           )}
 
-          <button className="modal-with-form__button" disabled={isLoadingAuth}>
+          <button
+            className="modal-with-form__button"
+            disabled={!isValid || isLoadingAuth}
+          >
             {isLoadingAuth
-              ? "Salvando..."
+              ? "Aguarde..."
               : title === "Login"
                 ? "Entrar"
                 : "Criar conta"}

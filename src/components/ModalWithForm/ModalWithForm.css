@@ -93,3 +93,11 @@
   text-align: center;
   margin-top: 15px;
 }
+
+.modal-with-form__input-error {
+  color: #b10300;
+  padding: 2px;
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: 5px;
+}
