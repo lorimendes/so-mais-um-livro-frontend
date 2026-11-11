@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import ProtectedRoute from "../ProtectedRoute";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Layout from "../Layout/Layout";
 import Home from "../../pages/Home";
@@ -218,7 +219,14 @@ function App() {
           }
         >
           <Route index element={<Home />} />
-          <Route path="/book-search" element={<BookSearch />} />
+          <Route
+            path="/book-search"
+            element={
+              <ProtectedRoute>
+                <BookSearch />
+              </ProtectedRoute>
+            }
+          />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
